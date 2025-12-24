@@ -1,8 +1,11 @@
+
+
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { getCurrentProfile } from '@/app/actions/profile';
 import { JobCreationChat } from '@/components/JobCreationChat';
 import { Header } from '@/components/hero/header';
+import { Suspense } from 'react';
 
 export default async function ChatJobPage() {
   const supabase = await createClient();
@@ -30,7 +33,9 @@ export default async function ChatJobPage() {
     
     <div className="flex flex-col h-screen bg-secondary overflow-hidden overscroll-none" style={{ overscrollBehavior: 'none' }}>
       <Header />
+      <Suspense fallback={<div>Loading...</div>}>
       <JobCreationChat clientProfileId={profile.id} />
+      </Suspense>
     </div>
   );
 }
