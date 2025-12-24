@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getCurrentProfile } from '@/app/actions/profile';
 import { getPendingFlags } from '@/app/actions/review';
 import ModerationDashboard from '@/components/admin/moderation-dashboard';
+import { Suspense } from 'react';
 
 export default async function AdminModerationPage() {
   const supabase = await createClient();
@@ -34,10 +35,12 @@ export default async function AdminModerationPage() {
   const pendingFlags = await getPendingFlags();
 
   return (
+    <Suspense fallback={<div>Loading..</div>}>
     <ModerationDashboard 
       pendingFlags={pendingFlags}
       adminProfileId={profile.id}
     />
+    </Suspense>
   );
 }
 
