@@ -11,8 +11,9 @@ interface JobDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function JobDetailPage({ params }: JobDetailPageProps) {
-  const { id } = await params;
+import { Suspense } from 'react';
+
+async function JobDetailContainer({ id }: { id: string }) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -54,7 +55,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
     // Check if freelancer has a booking for this job
     const bookings = await getFreelancerBookings(freelancerProfile.id);
-    const hasBooking = bookings.some(booking => 
+    const hasBooking = bookings.some(booking =>
       booking.job_requests && (booking.job_requests as { id: string }).id === id
     );
 
@@ -66,5 +67,18 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   }
 
   return <JobDetailContent job={job} jobId={id} role={profile.role} />;
+}
+
+async function JobDetailWrapper({ params }: JobDetailPageProps) {
+  const { id } = await params;
+  return <JobDetailContainer id={id} />;
+}
+
+export default function JobDetailPage({ params }: JobDetailPageProps) {
+  return (
+    <Suspense fallback={<div>Loading job details...</div>}>
+      <JobDetailWrapper params={params} />
+    </Suspense>
+  );
 }
 

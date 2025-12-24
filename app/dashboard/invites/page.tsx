@@ -4,8 +4,9 @@ import { getCurrentProfile } from '@/app/actions/profile';
 import { getFreelancerProfile } from '@/app/actions/freelancer';
 import { getFreelancerInvites } from '@/app/actions/invite';
 import InvitesPageContent from '@/components/invites/invites-page-content';
+import { Suspense } from 'react';
 
-export default async function InvitesPage() {
+async function InvitesContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -36,6 +37,14 @@ export default async function InvitesPage() {
 
   return (
     <InvitesPageContent invites={invites} role={profile.role} />
+  );
+}
+
+export default function InvitesPage() {
+  return (
+    <Suspense fallback={<div className="flex-1 w-full flex flex-col gap-12">Loading..</div>}>
+      <InvitesContainer />
+    </Suspense>
   );
 }
 

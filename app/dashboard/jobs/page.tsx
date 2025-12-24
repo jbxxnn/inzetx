@@ -4,7 +4,9 @@ import { getCurrentProfile } from '@/app/actions/profile';
 import { getClientJobRequests } from '@/app/actions/job';
 import { JobsPageContent } from '@/components/jobs/jobs-page-content';
 
-export default async function JobsPage() {
+import { Suspense } from 'react';
+
+async function JobsContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -23,6 +25,14 @@ export default async function JobsPage() {
   const jobs = await getClientJobRequests(profile.id);
 
   return <JobsPageContent jobs={jobs} />;
+}
+
+export default function JobsPage() {
+  return (
+    <Suspense fallback={<div>Loading jobs...</div>}>
+      <JobsContainer />
+    </Suspense>
+  );
 }
 
 

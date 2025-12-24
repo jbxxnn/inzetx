@@ -15,8 +15,7 @@ import { Hero } from "@/components/hero/hero";
 // import FAQSection from "@/components/hero/faq-section";
 import Footer from "@/components/hero/footer";
 
-export default async function Home() {
-
+async function HomeContainer() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const user = data?.claims;
@@ -25,12 +24,11 @@ export default async function Home() {
   if (user) {
     redirect('/dashboard');
   }
-  
+
   return (
-        <Suspense fallback={<div className="flex-1 flex items-center justify-center">Loading...</div>}>
     <main className="min-h-screen flex flex-col items-center">
       <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <Header className="fixed top-0 left-0 right-0 z-50"/>
+        <Header className="fixed top-0 left-0 right-0 z-50" />
 
 
         <Hero />
@@ -43,9 +41,16 @@ export default async function Home() {
         {/* <CTASection /> */}
         {/* <FAQSection /> */}
         <Footer />
-        
+
       </div>
     </main>
-        </Suspense>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex items-center justify-center">Loading...</div>}>
+      <HomeContainer />
+    </Suspense>
   );
 }

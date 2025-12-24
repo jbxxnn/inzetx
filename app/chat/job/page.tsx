@@ -7,7 +7,7 @@ import { JobCreationChat } from '@/components/JobCreationChat';
 import { Header } from '@/components/hero/header';
 import { Suspense } from 'react';
 
-export default async function ChatJobPage() {
+async function ChatJobContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -30,13 +30,18 @@ export default async function ChatJobPage() {
   }
 
   return (
-    
-      <Suspense fallback={<div>Loading..</div>}>
     <div className="flex flex-col h-screen bg-secondary overflow-hidden overscroll-none" style={{ overscrollBehavior: 'none' }}>
       <Header />
       <JobCreationChat clientProfileId={profile.id} />
     </div>
-      </Suspense>
+  );
+}
+
+export default function ChatJobPage() {
+  return (
+    <Suspense fallback={<div>Loading..</div>}>
+      <ChatJobContainer />
+    </Suspense>
   );
 }
 

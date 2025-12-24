@@ -9,7 +9,7 @@ interface DebugPageProps {
   params: Promise<{ id: string }>;
 }
 
-async function DebugContent({ id }: { id: string }) {
+async function DebugContainer({ id }: { id: string }) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -257,12 +257,16 @@ async function DebugContent({ id }: { id: string }) {
   );
 }
 
-export default async function DebugMatchesPage({ params }: DebugPageProps) {
+// Wrapper to unwrap params inside Suspense
+async function DebugMatchesWrapper({ params }: DebugPageProps) {
   const { id } = await params;
+  return <DebugContainer id={id} />;
+}
 
+export default function DebugMatchesPage({ params }: DebugPageProps) {
   return (
     <Suspense fallback={<div>Loading debug info...</div>}>
-      <DebugContent id={id} />
+      <DebugMatchesWrapper params={params} />
     </Suspense>
   );
 }

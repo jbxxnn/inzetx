@@ -10,8 +10,9 @@ interface JobMatchesPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function JobMatchesPage({ params }: JobMatchesPageProps) {
-  const { id } = await params;
+import { Suspense } from 'react';
+
+async function JobMatchesContainer({ id }: { id: string }) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -58,4 +59,15 @@ export default async function JobMatchesPage({ params }: JobMatchesPageProps) {
   );
 }
 
+async function JobMatchesWrapper({ params }: JobMatchesPageProps) {
+  const { id } = await params;
+  return <JobMatchesContainer id={id} />;
+}
 
+export default function JobMatchesPage({ params }: JobMatchesPageProps) {
+  return (
+    <Suspense fallback={<div>Loading matches...</div>}>
+      <JobMatchesWrapper params={params} />
+    </Suspense>
+  );
+}

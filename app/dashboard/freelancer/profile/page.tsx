@@ -4,8 +4,9 @@ import { getCurrentProfile } from '@/app/actions/profile';
 import { getFreelancerProfile } from '@/app/actions/freelancer';
 import { getFreelancerReviews, getFreelancerReviewStats } from '@/app/actions/review';
 import FreelancerProfileView from '@/components/freelancer-profile/freelancer-profile-view';
+import { Suspense } from 'react';
 
-export default async function FreelancerProfilePage() {
+async function FreelancerProfileContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -57,6 +58,14 @@ export default async function FreelancerProfilePage() {
       currentUserRole={profile.role}
       freelancerProfileId={freelancerProfile.id}
     />
+  );
+}
+
+export default function FreelancerProfilePage() {
+  return (
+    <Suspense fallback={<div className="flex-1 w-full flex flex-col gap-12">Loading..</div>}>
+      <FreelancerProfileContainer />
+    </Suspense>
   );
 }
 

@@ -1,4 +1,6 @@
 import { redirect } from 'next/navigation';
+
+
 import { createClient } from '@/lib/supabase/server';
 import { getCurrentProfile } from '@/app/actions/profile';
 import { getClientBookings, getFreelancerBookings } from '@/app/actions/booking';
@@ -26,7 +28,9 @@ interface Booking {
   job_requests?: JobRequest | null;
 }
 
-export default async function BookingsPage() {
+import { Suspense } from 'react';
+
+async function BookingsContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -54,11 +58,17 @@ export default async function BookingsPage() {
   }
 
   return (
-    <BookingsPageContent 
-      bookings={bookings} 
-      role={profile.role as 'client' | 'freelancer'} 
+    <BookingsPageContent
+      bookings={bookings}
+      role={profile.role as 'client' | 'freelancer'}
     />
   );
 }
 
-
+export default function BookingsPage() {
+  return (
+    <Suspense fallback={<div>Loading bookings...</div>}>
+      <BookingsContainer />
+    </Suspense>
+  );
+}

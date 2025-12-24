@@ -2,9 +2,9 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { getCurrentProfile } from '@/app/actions/profile';
 import { getFreelancerProfile } from '@/app/actions/freelancer';
-import { 
-  getFreelancerDashboardStats, 
-  getFreelancerUpcomingBookings 
+import {
+  getFreelancerDashboardStats,
+  getFreelancerUpcomingBookings
 } from '@/app/actions/freelancer';
 import { getFreelancerPendingInvites } from '@/app/actions/invite';
 import {
@@ -15,7 +15,9 @@ import {
 import FreelancerDashboard from "@/components/dashboard/freelancer-dashboard";
 import ClientDashboard from "@/components/dashboard/client-dashboard";
 
-export default async function Dashboard() {
+import { Suspense } from 'react';
+
+async function DashboardContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -48,7 +50,7 @@ export default async function Dashboard() {
     ]);
 
     return (
-      <FreelancerDashboard 
+      <FreelancerDashboard
         stats={stats}
         upcomingJobs={upcomingJobs}
         pendingInvites={pendingInvites}
@@ -78,4 +80,12 @@ export default async function Dashboard() {
 
   // If no role, redirect to role selection
   redirect('/dashboard');
+}
+
+export default function Dashboard() {
+  return (
+    <Suspense fallback={<div>Loading dashboard...</div>}>
+      <DashboardContainer />
+    </Suspense>
+  );
 }

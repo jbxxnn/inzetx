@@ -4,7 +4,9 @@ import { getCurrentProfile } from '@/app/actions/profile';
 import { getSavedFreelancers } from '@/app/actions/saved-pros';
 import SavedProsContent from '@/components/saved-pros/saved-pros-content';
 
-export default async function SavedProsPage() {
+import { Suspense } from 'react';
+
+async function SavedProsContainer() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -24,6 +26,14 @@ export default async function SavedProsPage() {
 
   return (
     <SavedProsContent savedFreelancers={savedFreelancers} role={profile.role} clientProfileId={profile.id} />
+  );
+}
+
+export default function SavedProsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SavedProsContainer />
+    </Suspense>
   );
 }
 
