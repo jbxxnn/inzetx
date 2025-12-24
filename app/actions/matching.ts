@@ -331,7 +331,7 @@ export async function findMatchesForJobRequest(
   // Fetch profile data (full_name and profile_photo) from profiles table
   // Get profile_ids from rows (which come from RPC function)
   const profileIdsForProfiles = Array.from(new Set(
-    rows.map((row: { profile_id: string }) => row.profile_id).filter((id): id is string => !!id)
+    rows.map((row: { profile_id: string }) => row.profile_id).filter((id: string) => !!id)
   ));
   
   const { data: profileData, error: profileDataError } = await supabaseAdmin
