@@ -2,18 +2,16 @@
 
 import { useState } from "react"
 import { DashboardLayout } from "@/components/dashboard/dashboard-sidebar"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { 
   Flag02Icon, 
   CheckmarkCircle02Icon, 
-  CloseCircleIcon,
   EyeIcon,
-  Filter02Icon
 } from "@hugeicons/core-free-icons"
-import { getPendingFlags, updateFlagStatus, type Review } from "@/app/actions/review"
+import { updateFlagStatus } from "@/app/actions/review"
 import { useRouter } from "next/navigation"
 import { FlagDetailDialog } from "./flag-detail-dialog"
 import Image from "next/image"
@@ -158,7 +156,7 @@ export default function ModerationDashboard({
                   </p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <HugeiconsIcon icon={Filter02Icon} className="w-6 h-6 text-primary" />
+                  <HugeiconsIcon icon={EyeIcon} className="w-6 h-6 text-primary" />
                 </div>
               </div>
             </CardContent>
@@ -306,7 +304,7 @@ export default function ModerationDashboard({
                           disabled={isProcessing === flag.id}
                           className="flex-1 border-secondary-foreground/20 text-secondary-foreground/70 hover:bg-secondary-foreground/10 rounded-full"
                         >
-                          <HugeiconsIcon icon={CloseCircleIcon} className="w-4 h-4 mr-2" />
+                          <HugeiconsIcon icon={CheckmarkCircle02Icon} className="w-4 h-4 mr-2" />
                           Dismiss
                         </Button>
                       </div>

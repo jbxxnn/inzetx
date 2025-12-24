@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { StarRating } from "@/components/review/star-rating"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { CheckmarkCircle02Icon, CloseCircleIcon, User02Icon } from "@hugeicons/core-free-icons"
+import { CheckmarkCircle02Icon, User02Icon } from "@hugeicons/core-free-icons"
 import Image from "next/image"
 import { Loader2 } from "lucide-react"
 
@@ -57,7 +57,6 @@ export function FlagDetailDialog({
   isOpen,
   onClose,
   onResolve,
-  adminProfileId,
   isProcessing,
 }: FlagDetailDialogProps) {
   const [resolutionNotes, setResolutionNotes] = useState("")
@@ -228,7 +227,7 @@ export function FlagDetailDialog({
                 </>
               ) : (
                 <>
-                  <HugeiconsIcon icon={CloseCircleIcon} className="w-4 h-4 mr-2" />
+                  <HugeiconsIcon icon={CheckmarkCircle02Icon} className="w-4 h-4 mr-2" />
                   Dismiss Flag
                 </>
               )}
