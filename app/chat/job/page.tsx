@@ -32,8 +32,8 @@ export default async function ChatJobPage() {
   return (
     
     <div className="flex flex-col h-screen bg-secondary overflow-hidden overscroll-none" style={{ overscrollBehavior: 'none' }}>
+      <Suspense fallback={<div>Loading..</div>}>
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
       <JobCreationChat clientProfileId={profile.id} />
       </Suspense>
     </div>
