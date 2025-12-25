@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Bricolage_Grotesque } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -41,7 +42,9 @@ export default function RootLayout({
           forcedTheme="light"
           disableTransitionOnChange
         >
-          {children}
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>
