@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge"
 import BreathingText from "../fancy/text/breathing-text"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import Footer from "../hero/footer"
 
 interface DashboardSidebarProps {
   role: 'client' | 'freelancer'
@@ -188,9 +189,9 @@ export function DashboardLayout({
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-10 min-w-0 max-w-full overflow-x-hidden">
+        <main className="flex-1 p-4 sm:p-6 lg:p-10 min-w-0 max-w-full">
           {/* Mobile Header */}
-          <div className="lg:hidden flex items-center justify-between mb-6 sticky top-0 bg-secondary z-50 py-4 px-4 sm:px-6 border-b border-secondary-foreground/10 -mx-4 sm:-mx-6">
+          <div className="lg:hidden flex items-center justify-between mb-6 sticky top-0 bg-secondary z-50 py-4 px-4 sm:px-6 border-b border-primary -mx-4 sm:-mx-6 -mt-4 sm:-mt-6">
             <Link href="/" className="flex items-center gap-2">
               <BreathingText
                 staggerDuration={0.08}
@@ -245,6 +246,7 @@ export function DashboardLayout({
           )}
 
           {children}
+          <Footer />
         </main>
       </div>
     </div>
