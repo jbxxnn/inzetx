@@ -192,7 +192,7 @@ export function DashboardLayout({
         <main className="flex-1 p-4 sm:p-6 lg:p-10 min-w-0 max-w-full">
           {/* Mobile Header */}
           <div className="lg:hidden flex items-center justify-between mb-6 sticky top-0 bg-secondary z-50 py-4 px-4 sm:px-6 border-b border-primary -mx-4 sm:-mx-6 -mt-4 sm:-mt-6">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="text-2xl font-bold flex items-center gap-2">
               <BreathingText
                 staggerDuration={0.08}
                 fromFontVariationSettings="'wght' 100, 'slnt' 0"
@@ -215,7 +215,7 @@ export function DashboardLayout({
             <div className="lg:hidden fixed inset-0 z-50 bg-secondary/95 backdrop-blur-sm">
               <div className="flex flex-col h-full bg-secondary-foreground border-r border-primary/20">
                 <div className="flex items-center justify-between p-6 border-b border-primary/20">
-                  <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                  <Link href="/" className="text-2xl font-bold flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                     <BreathingText
                       staggerDuration={0.08}
                       fromFontVariationSettings="'wght' 100, 'slnt' 0"
