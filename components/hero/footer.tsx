@@ -1,10 +1,18 @@
 // import Link from "next/link"
 import Link from "next/link"
 import BreathingText from "../fancy/text/breathing-text"
+import { cn } from "@/lib/utils"
 
-export default function Footer() {
+interface FooterProps {
+  className?: string
+}
+
+export default function Footer({ className }: FooterProps = {}) {
   return (
-    <footer className="w-full bg-secondary-foreground text-secondary border-t border-primary h-10 md:h-8 p-0 px-5 fixed bottom-0 left-0 right-0 z-50">
+    <footer className={cn(
+      "w-full bg-secondary-foreground text-secondary border-t border-primary h-10 md:h-8 p-0 px-5 fixed bottom-0 left-0 right-0 z-50",
+      className
+    )}>
       <div className="flex flex-row gap-2 items-center justify-between h-full pt-1">
         <div className="flex flex-row gap-2 md:gap-4 items-center">
           <p className="text-[10px] md:text-xs text-secondary whitespace-nowrap">More Inzet.X</p>

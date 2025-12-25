@@ -244,9 +244,10 @@ export function DashboardLayout({
               </div>
             </div>
           )}
-
-          {children}
-          <Footer />
+          <div className="mb-16 lg:mb-0 md:mb-0">
+            {children}
+          </div>
+          <Footer className="block md:hidden lg:hidden" />
         </main>
       </div>
     </div>
