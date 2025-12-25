@@ -20,7 +20,7 @@ import {
   DialogFooter,
 } from './ui/dialog';
 import { createJobInvite } from '@/app/actions/invite';
-import { CheckCircle2, Loader2, Star } from 'lucide-react';
+import { CheckCircle2, Star, BookmarkCheckIcon, BookmarkIcon, Loader } from 'lucide-react';
 import type { MatchResult } from '@/app/actions/matching';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Location04Icon, StarCircleIcon } from '@hugeicons/core-free-icons';
@@ -52,7 +52,7 @@ export function MatchResults({
   // Load saved status for all freelancers
   useEffect(() => {
     if (!clientProfileId) return;
-    
+
     const loadSavedStatus = async () => {
       const savedIds = new Set<string>();
       for (const match of matches) {
@@ -147,8 +147,8 @@ export function MatchResults({
           // const fallbackColor = getRandomColor(match.freelancerProfileId);
 
           return (
-            <Card 
-              key={match.freelancerProfileId} 
+            <Card
+              key={match.freelancerProfileId}
               className="hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer border border-primary"
               onClick={() => setSelectedMatch(match)}
             >
@@ -156,23 +156,7 @@ export function MatchResults({
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      {clientProfileId && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={(e) => handleToggleSave(e, match.freelancerProfileId)}
-                          disabled={savingIds.has(match.freelancerProfileId)}
-                          className="h-8 w-8 rounded-full hover:bg-primary/20 shrink-0"
-                        >
-                          {savingIds.has(match.freelancerProfileId) ? (
-                            <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                          ) : savedFreelancerIds.has(match.freelancerProfileId) ? (
-                            <HugeiconsIcon icon={StarCircleIcon} className="h-5 w-5 text-primary fill-primary" />
-                          ) : (
-                            <Star className="h-5 w-5 text-secondary-foreground/50" />
-                          )}
-                        </Button>
-                      )}
+
                     </div>
                     <CardTitle className="text-white flex items-center gap-2">
                       {match.profilePhoto ? (
@@ -186,9 +170,9 @@ export function MatchResults({
                           />
                         </div>
                       ) : (
-                        <div 
+                        <div
                           className="w-10 h-10 rounded-full flex-shrink-0 bg-secondary-foreground border-2 border-primary"
-                          // style={{ backgroundColor: "hsl(240, 30%, 25%)" }}
+                        // style={{ backgroundColor: "hsl(240, 30%, 25%)" }}
                         />
                       )}
                       <div className="flex flex-col gap-1">
@@ -202,12 +186,29 @@ export function MatchResults({
                           <span className="flex items-center gap-1">
                             <HugeiconsIcon icon={Location04Icon} size={14} />
                             <span>
-                              {match.location 
+                              {match.location
                                 ? `${(match.location.city as string) || 'Almere'}${(match.location.postcode as string) ? `, ${match.location.postcode as string}` : ''}`
                                 : 'Almere'
                               }
                             </span>
                           </span>
+                          {clientProfileId && (
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={(e) => handleToggleSave(e, match.freelancerProfileId)}
+                              disabled={savingIds.has(match.freelancerProfileId)}
+                              className="h-8 w-8 rounded-full hover:bg-primary/20 shrink-0"
+                            >
+                              {savingIds.has(match.freelancerProfileId) ? (
+                                <Loader className="h-4 w-4 animate-spin text-primary" />
+                              ) : savedFreelancerIds.has(match.freelancerProfileId) ? (
+                                <BookmarkCheckIcon className="h-5 w-5 text-primary fill-primary" />
+                              ) : (
+                                <BookmarkIcon className="h-5 w-5 text-secondary-foreground/50" />
+                              )}
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </CardTitle>
@@ -217,11 +218,11 @@ export function MatchResults({
               <CardContent className="p-6 pt-0 flex flex-col gap-4">
 
 
-              <span className="text-md text-secondary-foreground font-bold">
+                <span className="text-md text-secondary-foreground font-bold">
                   {match.headline}
                 </span>
 
-                
+
 
                 {match.explanation && (
                   <div>
@@ -264,7 +265,7 @@ export function MatchResults({
       {/* Freelancer Details Modal */}
       <Dialog open={!!selectedMatch} onOpenChange={(open) => !open && setSelectedMatch(null)}>
         {selectedMatch && (
-          <DialogContent className="max-w-2xl bg-primary-foreground" style={{ borderRadius: '10px' }}>
+          <DialogContent className="max-w-2xl bg-primary-foreground">
             <div className="flex items-start gap-4 mb-4">
               {selectedMatch.profilePhoto ? (
                 <div className="relative w-40 h-40 rounded-full overflow-hidden flex-shrink-0 border-2 border-accent" style={{ minWidth: '160px', minHeight: '160px', width: '160px', height: '160px' }}>
@@ -296,26 +297,7 @@ export function MatchResults({
                       {selectedMatch.headline}
                     </DialogDescription>
                   </DialogHeader>
-                  {clientProfileId && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleToggleSave(e, selectedMatch.freelancerProfileId);
-                      }}
-                      disabled={savingIds.has(selectedMatch.freelancerProfileId)}
-                      className="h-10 w-10 rounded-full hover:bg-primary/20 shrink-0"
-                    >
-                      {savingIds.has(selectedMatch.freelancerProfileId) ? (
-                        <Loader2 className="h-5 w-5 animate-spin text-primary" />
-                      ) : savedFreelancerIds.has(selectedMatch.freelancerProfileId) ? (
-                        <HugeiconsIcon icon={StarCircleIcon} className="h-6 w-6 text-primary fill-primary" />
-                      ) : (
-                        <Star className="h-6 w-6 text-secondary-foreground/50" />
-                      )}
-                    </Button>
-                  )}
+
                 </div>
               </div>
             </div>
@@ -340,6 +322,26 @@ export function MatchResults({
                     </span>
                   </div>
                 )}
+                {clientProfileId && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleToggleSave(e, selectedMatch.freelancerProfileId);
+                    }}
+                    disabled={savingIds.has(selectedMatch.freelancerProfileId)}
+                    className="h-10 w-10 rounded-full hover:bg-primary/20 shrink-0"
+                  >
+                    {savingIds.has(selectedMatch.freelancerProfileId) ? (
+                      <Loader className="h-5 w-5 animate-spin text-primary" />
+                    ) : savedFreelancerIds.has(selectedMatch.freelancerProfileId) ? (
+                      <BookmarkCheckIcon className="h-10 w-10 text-primary fill-primary" />
+                    ) : (
+                      <BookmarkIcon className="h-10 w-10 text-secondary-foreground" />
+                    )}
+                  </Button>
+                )}
               </div>
 
               {/* Skills */}
@@ -348,9 +350,9 @@ export function MatchResults({
                   <h3 className="text-sm font-semibold text-secondary-foreground mb-2 mt-8">Skills</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedMatch.skills.map((skill, index) => (
-                      <Badge 
-                        key={index} 
-                        variant="secondary" 
+                      <Badge
+                        key={index}
+                        variant="secondary"
                         className="text-xs font-light capitalize bg-accent text-secondary-foreground rounded-full px-3 py-1"
                       >
                         {skill}
@@ -387,7 +389,7 @@ export function MatchResults({
               </div>
             </div>
 
-            <DialogFooter className="mt-6">
+            <DialogFooter className="mt-6 flex flex-row gap-4">
               <Button
                 variant="outline"
                 onClick={() => setSelectedMatch(null)}
@@ -403,12 +405,12 @@ export function MatchResults({
                   }
                 }}
                 disabled={invitedIds.has(selectedMatch.freelancerProfileId) || invitingId === selectedMatch.freelancerProfileId}
-                className="flex-1 sm:flex-none rounded-full"
+                className="flex-1 sm:flex-none rounded-full bg-secondary-foreground"
                 variant={invitedIds.has(selectedMatch.freelancerProfileId) ? 'outline' : 'default'}
               >
                 {invitingId === selectedMatch.freelancerProfileId ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
                     Sending...
                   </>
                 ) : invitedIds.has(selectedMatch.freelancerProfileId) ? (
