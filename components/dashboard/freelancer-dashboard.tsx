@@ -203,8 +203,8 @@ export default function FreelancerDashboard({
                     key={star}
                     size={12}
                     className={`sm:w-4 sm:h-4 lg:w-4 lg:h-4 ${star <= Math.round(stats.rating)
-                        ? 'fill-primary text-primary'
-                        : 'fill-transparent text-secondary-foreground/30'
+                      ? 'fill-primary text-primary'
+                      : 'fill-transparent text-secondary-foreground/30'
                       }`}
                   />
                 ))}
@@ -266,7 +266,7 @@ export default function FreelancerDashboard({
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2 sm:gap-3 mb-2 sm:mb-3">
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-heading font-bold text-sm sm:text-base lg:text-lg text-secondary-foreground mb-1 group-hover:text-primary transition-colors truncate">
+                          <h3 className="font-heading font-bold text-sm sm:text-base lg:text-lg text-secondary-foreground mb-1 transition-colors truncate">
                             {job.title}
                           </h3>
                           <p className="text-xs sm:text-sm text-secondary-foreground/70 font-medium truncate">{job.client}</p>
@@ -274,7 +274,7 @@ export default function FreelancerDashboard({
                         <Badge
                           className={
                             job.status === "confirmed"
-                              ? "bg-primary text-secondary-foreground rounded-full px-2 sm:px-3 py-0.5 sm:py-1 font-semibold text-xs sm:text-sm shrink-0"
+                              ? "bg-green-500/20 text-green-700 border border-green-500/30 rounded-full px-2 sm:px-3 py-0.5 sm:py-1 font-semibold text-xs sm:text-sm shrink-0"
                               : "bg-yellow-500/20 text-yellow-700 border border-yellow-500/30 rounded-full px-2 sm:px-3 py-0.5 sm:py-1 font-semibold text-xs sm:text-sm shrink-0"
                           }
                         >
@@ -430,8 +430,8 @@ export default function FreelancerDashboard({
                   <div
                     key={msg.id}
                     className={`flex items-start gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer transition-all duration-300 ${msg.unread
-                        ? "bg-secondary rounded-xl sm:rounded-2xl border-2 border-primary"
-                        : "hover:bg-secondary border-2 border-transparent hover:border-secondary-foreground"
+                      ? "bg-secondary rounded-xl sm:rounded-2xl border-2 border-primary"
+                      : "hover:bg-secondary border-2 border-transparent hover:border-secondary-foreground"
                       }`}
                   >
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
