@@ -22,7 +22,7 @@ export const Hero = () => {
                             turn your skills into income by helping neighbors in your free time.
                         </p>
                         <div className="flex flex-col md:flex-row gap-2 z-10">
-                            <Button asChild className="w-full md:w-auto text-xs px-4 py-2 rounded-full bg-accent text-accent-foreground">
+                            <Button asChild className="w-full md:w-auto text-xs px-4 py-2 rounded-full bg-secondary-foreground text-secondary">
                                 <Link href="/auth/sign-up">Find Help Now!</Link>
                             </Button>
                             <Button asChild className="w-full md:w-auto text-xs px-4 py-2 rounded-full bg-primary text-secondary-foreground border border-secondary">
@@ -32,36 +32,27 @@ export const Hero = () => {
                     </div>
 
 
-                    <div className="flex flex-col md:flex-row lg:flex-row gap-6 items-center text-center w-full pt-16 z-10">
-                        {/* <Image 
-            src="/handyman-helping-homeowner-with-home-repair-friend.jpg" 
-            alt="Hero Image" 
-            width={500} 
-            height={300} 
-            className="rounded-lg h-[300px] w-full object-cover object-center" 
-            style={{
-                borderRadius: '10px',
-            }}
-            /> */}
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 w-full pt-16 z-10 no-scrollbar pb-8 md:overflow-x-visible md:snap-none md:flex-row md:justify-center md:pb-0">
+
                         <div
-                            className="w-[100%] h-[25rem] bg-[#785849] rounded-md bg-cover bg-center md:w-[20%] lg:w-[30%]"
+                            className="w-[85%] flex-shrink-0 snap-center h-[25rem] bg-[#785849] rounded-md bg-cover bg-top md:bg-center md:w-[20%] lg:w-[30%] md:flex-shrink"
                             style={{ backgroundImage: "url('/man-with-red-helmet-brick.png')" }}
                         ></div>
-                        <div className="w-[100%] h-[25rem] bg-[#fe9690] rounded-md bg-cover bg-center md:w-[20%] lg:w-[20%]"
+                        <div className="w-[85%] flex-shrink-0 snap-center h-[25rem] bg-[#fe9690] rounded-md bg-cover bg-top md:bg-center md:w-[20%] lg:w-[20%] md:flex-shrink"
                             style={{ backgroundImage: "url('/girl-yellow-jacket.png')" }}
                         ></div>
-                        <div className="w-[100%] h-[25rem] bg-[#ff8e32] rounded-md bg-cover bg-center md:w-[40%] lg:w-[40%]"
+                        <div className="w-[85%] flex-shrink-0 snap-center h-[25rem] bg-[#ff8e32] rounded-md bg-cover bg-top md:bg-center md:w-[40%] lg:w-[40%] md:flex-shrink"
                             style={{ backgroundImage: "url('/carpenter-cutting-mdf-board-inside-workshop.png')" }}
                         ></div>
-                        <div className="w-[100%] h-[25rem] bg-[#ffc901] rounded-md bg-cover bg-center md:w-[20%] lg:w-[20%]"
+                        <div className="w-[85%] flex-shrink-0 snap-center h-[25rem] bg-[#ffc901] rounded-md bg-cover bg-top md:bg-center md:w-[20%] lg:w-[20%] md:flex-shrink"
                             style={{ backgroundImage: "url('/plumber-with-his-arms-crossed.png')" }}
                         ></div>
-                        <div className="w-[100%] h-[25rem] bg-[#0093fe] rounded-md bg-cover bg-center md:w-[30%] lg:w-[30%]"
+                        <div className="w-[85%] flex-shrink-0 snap-center h-[25rem] bg-[#0093fe] rounded-md bg-cover bg-top md:bg-center md:w-[30%] lg:w-[30%] md:flex-shrink"
                             style={{ backgroundImage: "url('/close-up-portrait-smiling-african-photographer-holding-photo-camera.png')" }}
                         ></div>
                     </div>
 
-                    <h1 className="text-[6rem] md:text-[12rem] lg:text-[36rem] font-bold leading-tight bg-gradient-to-t from-white to-transparent bg-clip-text text-transparent opacity-[0.5] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 whitespace-nowrap pointer-events-none">INZET.X</h1>
+                    <h1 className="text-[12rem] md:text-[12rem] lg:text-[36rem] font-bold leading-tight bg-gradient-to-t from-white to-transparent bg-clip-text text-transparent opacity-[0.5] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 whitespace-nowrap pointer-events-none">INZET.X</h1>
                 </div>
 
 

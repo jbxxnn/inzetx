@@ -50,13 +50,13 @@ export function DashboardSidebar({
     return pathname === path || pathname?.startsWith(path + '/')
   }
 
-  const NavItem = ({ 
-    href, 
-    icon: Icon, 
-    label, 
-    badge, 
-    onClick 
-  }: { 
+  const NavItem = ({
+    href,
+    icon: Icon,
+    label,
+    badge,
+    onClick
+  }: {
     href?: string
     icon: React.ComponentType<{ size?: number; className?: string }>
     label: string
@@ -64,11 +64,10 @@ export function DashboardSidebar({
     onClick?: () => void
   }) => {
     const active = href ? isActive(href) : false
-    const className = `flex items-center rounded-full gap-3 px-5 py-3.5 transition-all duration-200 w-full ${
-      active
-        ? "bg-primary text-secondary-foreground shadow-lg scale-[1.02]"
-        : "text-secondary hover:bg-secondary hover:text-secondary-foreground hover:scale-[1.01]"
-    }`
+    const className = `flex items-center rounded-full gap-3 px-5 py-3.5 transition-all duration-200 w-full ${active
+      ? "bg-primary text-secondary-foreground shadow-lg scale-[1.02]"
+      : "text-secondary hover:bg-secondary hover:text-secondary-foreground hover:scale-[1.01]"
+      }`
 
     if (href) {
       return (
@@ -146,7 +145,7 @@ export function DashboardSidebar({
       </nav>
 
       <div className="border-t border-gray-800/50 pt-6 mt-auto">
-        <button 
+        <button
           onClick={handleLogout}
           className="flex items-center gap-3 px-5 py-3.5 text-secondary hover:text-secondary-foreground hover:bg-secondary rounded-full transition-all duration-200 w-full"
         >
@@ -176,7 +175,7 @@ export function DashboardLayout({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-secondary w-full">
+    <div className="min-h-screen bg-background w-full">
       <div className="flex min-w-0">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:flex flex-col w-72 bg-secondary-foreground text-secondary min-h-screen max-h-screen p-6 sticky top-0 border-r border-primary/20 shrink-0">
