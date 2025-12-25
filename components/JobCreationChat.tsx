@@ -63,7 +63,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
- 
+
 
   // Auto-resize textarea
   useEffect(() => {
@@ -89,7 +89,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
   // Handle welcome screen fade out animation
   useEffect(() => {
     const shouldShowWelcome = messages.length === 1 && messages[0].role === 'assistant';
-    
+
     if (!shouldShowWelcome && isWelcomeScreenVisible) {
       // Start fade out animation
       setIsWelcomeScreenAnimatingOut(true);
@@ -186,7 +186,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
           if (done) break;
 
           const chunk = decoder.decode(value, { stream: true });
-          
+
           // Handle plain text stream from toTextStreamResponse()
           // Each chunk contains text that we append directly
           if (chunk) {
@@ -208,7 +208,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
 
       // Check if the last message is asking for confirmation
       const lastMessage = assistantContent.toLowerCase();
-      const isConfirmationRequest = 
+      const isConfirmationRequest =
         lastMessage.includes('is this correct') ||
         lastMessage.includes('does this look good') ||
         lastMessage.includes('confirm') ||
@@ -365,9 +365,9 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
             <div className="min-h-full flex flex-col">
               {/* Welcome message or empty state */}
 
-              
-                {isWelcomeScreenVisible && (
-                <div 
+
+              {isWelcomeScreenVisible && (
+                <div
                   className={`py-12 md:py-16 lg:py-20 ${isWelcomeScreenAnimatingOut ? 'fade-out-up' : ''}`}
                   style={{ minHeight: 'calc(100vh - 96px)' }}
                 >
@@ -375,7 +375,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
                     <div className="max-w-3xl mx-auto text-center mb-12">
                       {/* <p className="text-primary text-xs sm:text-sm font-heading font-semibold uppercase tracking-wider mb-4">AI-POWERED MATCHING</p> */}
                       <h1 className="text-3xl font-heading font-bold text-secondary-foreground leading-tight mb-6">
-                        Tell us what you need, <span className="font-serif italic text-primary bg-secondary-foreground rounded-lg text-transparent p-0">we&apos;ll find</span> the perfect pro.
+                        Tell us what you need, <span className="font-serif italic text-primary bg-secondary-foreground rounded-lg p-0">we&apos;ll find</span> the perfect pro.
                       </h1>
                       <p className="text-base sm:text-lg text-secondary-foreground max-w-lg mx-auto">
                         Describe your project and our AI will instantly match you with verified, skilled freelancers ready to help.
@@ -398,7 +398,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
                                   "min-h-[100px]"
                                 )}
                                 style={{
-                                  fontSize: '20px',
+                                  fontSize: '10px',
                                   lineHeight: '1.5',
                                 }}
                                 onChange={(e) => {
@@ -445,26 +445,26 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
               {/* Messages */}
               {!isWelcomeScreenVisible && (
                 <div className="flex-1 py-6 fade-in-from-bottom">
-                  {(!jobId || matches.length === 0) &&(
-                      messages.map((message, index) => (
-                        <div key={message.id}>
-                          <ChatMessage
-                            role={message.role}
-                            content={message.content}
-                            isStreaming={index === messages.length - 1 && isLoading && message.role === 'assistant'}
-                          />
-                          {message.showQuickReplies && (
-                            <div className="px-6 pb-4 mt-4">
-                              <QuickReplyButtons
-                                onConfirm={handleConfirmJob}
-                                onEdit={handleEditJob}
-                                isLoading={isCreatingJob}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      ))
-                    )}
+                  {(!jobId || matches.length === 0) && (
+                    messages.map((message, index) => (
+                      <div key={message.id}>
+                        <ChatMessage
+                          role={message.role}
+                          content={message.content}
+                          isStreaming={index === messages.length - 1 && isLoading && message.role === 'assistant'}
+                        />
+                        {message.showQuickReplies && (
+                          <div className="px-6 pb-4 mt-4">
+                            <QuickReplyButtons
+                              onConfirm={handleConfirmJob}
+                              onEdit={handleEditJob}
+                              isLoading={isCreatingJob}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
 
                   {/* Show matches if job is created */}
                   {jobId && matches.length > 0 && (
