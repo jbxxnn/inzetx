@@ -30,7 +30,7 @@ export function ReviewList({
       <div className="text-center py-12">
         <p className="text-secondary-foreground/70">No reviews yet</p>
         <p className="text-sm text-secondary-foreground/50 mt-2">
-          Be the first to leave a review!
+
         </p>
       </div>
     )

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { 
+import {
   User02Icon,
   Location04Icon,
   Calendar02Icon,
@@ -52,8 +52,8 @@ interface FreelancerProfileViewProps {
   freelancerProfileId?: string;
 }
 
-export default function FreelancerProfileView({ 
-  freelancerProfile, 
+export default function FreelancerProfileView({
+  freelancerProfile,
   profile,
   role,
   reviews = [],
@@ -92,29 +92,29 @@ export default function FreelancerProfileView({
   // Format availability
   const formatAvailability = () => {
     if (!freelancerProfile.availability) return 'Not specified';
-    
+
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const availabilityList: string[] = [];
-    
+
     Object.entries(freelancerProfile.availability).forEach(([day, times]) => {
       if (times && times.length > 0) {
         const dayName = days[parseInt(day)] || day;
         availabilityList.push(`${dayName}: ${times.join(', ')}`);
       }
     });
-    
+
     return availabilityList.length > 0 ? availabilityList.join(' • ') : 'Not specified';
   };
 
   // Format location
   const formatLocation = () => {
     if (!freelancerProfile.location) return 'Not specified';
-    
+
     const parts: string[] = [];
     if (freelancerProfile.location.city) parts.push(freelancerProfile.location.city);
     if (freelancerProfile.location.postcode) parts.push(freelancerProfile.location.postcode);
     if (freelancerProfile.location.address) parts.push(freelancerProfile.location.address);
-    
+
     return parts.length > 0 ? parts.join(', ') : 'Not specified';
   };
 
@@ -146,7 +146,7 @@ export default function FreelancerProfileView({
             <CardContent className="p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                 {profile.profile_photo ? (
-                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-primary shrink-0">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-secondary-foreground shadow-sm shrink-0">
                     <Image
                       src={profile.profile_photo}
                       alt={profile.full_name || 'Profile'}
@@ -156,34 +156,34 @@ export default function FreelancerProfileView({
                     />
                   </div>
                 ) : (
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center shrink-0 border-2 border-primary">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-primary flex items-center justify-center shrink-0 border-2 border-secondary-foreground shadow-sm">
                     <HugeiconsIcon icon={User02Icon} className="w-12 h-12 sm:w-16 sm:h-16 text-secondary-foreground" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-2xl sm:text-3xl font-heading font-bold text-secondary-foreground mb-2">
+                  <h2 className="text-2xl font-heading font-bold text-secondary-foreground">
                     {profile.full_name || 'Freelancer'}
                   </h2>
+                  {profile.phone_number && (
+                    <p className="text-xl font-semibold text-secondary-foreground mb-4">
+                      {profile.phone_number}
+                    </p>
+                  )}
                   {freelancerProfile.headline && (
-                    <p className="text-lg sm:text-xl text-primary font-semibold mb-3">
+                    <p className="text-sm text-secondary-foreground font-semibold mb-3">
                       {freelancerProfile.headline}
                     </p>
                   )}
                   {reviewStats && reviewStats.totalReviews > 0 && (
                     <div className="flex items-center gap-3 mt-3">
                       <StarRating rating={reviewStats.averageRating} size={20} />
-                      <span className="text-sm text-secondary-foreground/70">
+                      <span className="text-sm text-secondary-foreground">
                         ({reviewStats.totalReviews} {reviewStats.totalReviews === 1 ? 'review' : 'reviews'})
                       </span>
                     </div>
                   )}
-                  {profile.phone_number && (
-                    <p className="text-sm text-secondary-foreground/70 mb-1">
-                      {profile.phone_number}
-                    </p>
-                  )}
                   {profile.languages && profile.languages.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-3">
+                    <div className="flex flex-wrap gap-2 mt-4">
                       {profile.languages.map((lang, index) => (
                         <Badge key={index} className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-xs">
                           {lang}
@@ -208,7 +208,7 @@ export default function FreelancerProfileView({
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm sm:text-base text-secondary-foreground/80 whitespace-pre-wrap leading-relaxed">
+                <p className="text-sm sm:text-base text-secondary-foreground whitespace-pre-wrap leading-relaxed">
                   {freelancerProfile.description}
                 </p>
               </CardContent>
