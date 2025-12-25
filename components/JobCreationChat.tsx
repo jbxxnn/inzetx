@@ -394,7 +394,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
                             <div className="p-4">
                               <Textarea
                                 className={cn(
-                                  "w-full resize-none rounded-xl border-2 border-secondary bg-primary-foreground px-4 py-4 placeholder:text-secondary-foreground text-secondary-foreground focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary transition-all duration-300",
+                                  "w-full resize-none rounded-xl border-2 border-secondary bg-primary-foreground px-4 py-4 placeholder:text-primary text-secondary-foreground focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary transition-all duration-300",
                                   "min-h-[100px]"
                                 )}
                                 style={{
