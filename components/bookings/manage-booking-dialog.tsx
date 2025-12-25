@@ -43,7 +43,7 @@ export function ManageBookingDialog({
   const [action, setAction] = useState<'complete' | 'cancel' | 'reschedule' | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  
+
   // Reschedule form state
   const [newDate, setNewDate] = useState('')
   const [newTime, setNewTime] = useState('')
@@ -176,7 +176,7 @@ export function ManageBookingDialog({
                 type="date"
                 value={newDate}
                 onChange={(e) => setNewDate(e.target.value)}
-                className="bg-primary-foreground h-14 pl-6 text-lg border border-accent focus:border-accent focus-visible:border-accent focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none rounded-full text-secondary-foreground"
+                className="bg-primary-foreground w-72 h-14 pl-6 text-lg border border-secondary focus:border-secondary focus-visible:border-secondary focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none rounded-lg text-secondary-foreground"
                 required
               />
             </div>
@@ -190,7 +190,7 @@ export function ManageBookingDialog({
                 type="time"
                 value={newTime}
                 onChange={(e) => setNewTime(e.target.value)}
-                className="bg-primary-foreground h-14 pl-6 text-lg border border-accent focus:border-accent focus-visible:border-accent focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none rounded-full text-secondary-foreground"
+                className="bg-primary-foreground w-72 h-14 pl-6 text-lg border border-secondary focus:border-secondary focus-visible:border-secondary focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none rounded-lg text-secondary-foreground"
               />
             </div>
 
@@ -203,10 +203,7 @@ export function ManageBookingDialog({
                 value={newNotes}
                 onChange={(e) => setNewNotes(e.target.value)}
                 placeholder="Add any additional notes about the rescheduled time..."
-                className="flex min-h-[100px] w-full text-secondary-foreground rounded-md border border-accent bg-primary-foreground px-4 py-3 text-base shadow-sm placeholder:text-secondary-foreground/50 focus:border-accent focus-visible:border-accent focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
-                style={{
-                  borderRadius: '30px',
-                }}
+                className="flex min-h-[100px] w-full text-secondary-foreground rounded-lg border border-secondary bg-primary-foreground px-4 py-3 text-base shadow-sm placeholder:text-secondary-foreground focus:border-secondary focus-visible:border-secondary focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus-visible:outline-none focus:shadow-none focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
               />
             </div>
 
@@ -238,7 +235,7 @@ export function ManageBookingDialog({
         ) : (
           <div className="space-y-4">
             <p className="text-secondary-foreground">
-              {action === 'complete' 
+              {action === 'complete'
                 ? 'Are you sure you want to mark this booking as completed?'
                 : 'Are you sure you want to cancel this booking? This action cannot be undone.'}
             </p>
@@ -253,11 +250,10 @@ export function ManageBookingDialog({
               </Button>
               <Button
                 onClick={action === 'complete' ? handleComplete : handleCancel}
-                className={`flex-1 rounded-full h-12 font-semibold transition-all duration-300 ${
-                  action === 'complete'
-                    ? 'bg-green-500 text-white hover:bg-green-600'
-                    : 'bg-destructive text-white hover:bg-destructive/90'
-                }`}
+                className={`flex-1 rounded-full h-12 font-semibold transition-all duration-300 ${action === 'complete'
+                  ? 'bg-green-500 text-white hover:bg-green-600'
+                  : 'bg-destructive text-white hover:bg-destructive/90'
+                  }`}
                 disabled={isLoading}
               >
                 {isLoading ? (
