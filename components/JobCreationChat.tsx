@@ -398,7 +398,7 @@ export function JobCreationChat({ clientProfileId }: JobCreationChatProps) {
                                   "min-h-[100px]"
                                 )}
                                 style={{
-                                  fontSize: '10px',
+                                  fontSize: '16px',
                                   lineHeight: '1.5',
                                 }}
                                 onChange={(e) => {
