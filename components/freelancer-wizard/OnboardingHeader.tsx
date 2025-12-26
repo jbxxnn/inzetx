@@ -51,8 +51,8 @@ export function OnboardingHeader({ currentStep, className }: OnboardingHeaderPro
         {content.description}
       </p> */}
 
-      <span className="text-4xl lg:text-5xl font-bold text-secondary-foreground leading-tight">{content.heading}</span>
-      <span className="text-lg text-secondary-foreground leading-relaxed">{content.description}</span>
+      <span className="text-lg lg:text-5xl font-bold text-secondary-foreground leading-tight">{content.heading}</span>
+      <span className="text-sm text-secondary-foreground leading-relaxed">{content.description}</span>
     </div>
   );
 }

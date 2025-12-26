@@ -56,7 +56,7 @@ export function Step3Location({ data, onUpdate, onNext, onPrevious }: Step3Locat
             onChange={(e) => setPostcode(e.target.value)}
             placeholder="1356 AB or Almere Buiten"
             required
-            className="bg-primary-foreground h-15 pl-8 text-5xl md:text-5xl border border-accent focus:border-accent focus-visible:border-accent focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus:outline-none focus:shadow-none focus-visible:shadow-none rounded-full text-secondary-foreground placeholder:text-secondary-foreground/50"
+            className="bg-primary-foreground h-15 pl-8 text-2xl md:text-5xl border border-accent focus:border-accent focus-visible:border-accent focus:ring-0 focus-visible:ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus:outline-none focus:outline-none focus:shadow-none focus-visible:shadow-none rounded-full text-secondary-foreground placeholder:text-secondary-foreground/50"
           />
           <p className="text-xs text-secondary-foreground">
             This helps us match you with nearby clients.
